@@ -258,7 +258,10 @@
 
             //Create edit form
             var $editForm = $('<form id="jtable-edit-form" class="jtable-dialog-form jtable-edit-form"></form>');
-
+            var ColumnCount=self.options.editFormColumns ? self.options.editFormColumns : 1;
+            var CurrentColumnCount=0;
+            var $EditFormTable = $('<table class="jtable-input-field-container-grid"/>').appendTo($editForm);
+            var $RowContainer = $('<tr class="jtable-input-field-container-row" />').appendTo($EditFormTable);
             //Create input fields
             for (var i = 0; i < self._fieldList.length; i++) {
 
@@ -289,7 +292,15 @@
                 }
 
                 //Create a container div for this input field and add to form
-                var $fieldContainer = $('<div class="jtable-input-field-container"></div>').appendTo($editForm);
+                var $fieldContainer = $('<td />')
+                    .addClass('jtable-input-field-container')
+                    .appendTo($RowContainer);
+                
+                CurrentColumnCount++;
+				if(CurrentColumnCount==ColumnCount)	{
+						$RowContainer=$('<tr class="jtable-input-field-container-row" />').appendTo($EditFormTable);
+						CurrentColumnCount=0;
+				}
 
                 //Create a label for input
                 $fieldContainer.append(self._createInputLabelForRecordField(fieldName));

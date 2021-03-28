@@ -181,11 +181,15 @@ div.jtable-main-container div.jtable-column-selection-container ul.jtable-column
 div.jtable-main-container div.jtable-column-selection-container ul.jtable-column-select-list li input[type="checkbox"] {
   cursor: pointer;
 }
-form.jtable-dialog-form div.jtable-input-field-container {
+form.jtable-dialog-form table.jtable-input-field-container-grid {
+	  border-spacing: 10px;
+    border-collapse: separate;
+}
+form.jtable-dialog-form table.jtable-input-field-container-grid tr.jtable-input-field-container-row td.jtable-input-field-container {
   padding: 2px 0px 3px 0px;
   border-bottom: 1px solid #ddd;
 }
-form.jtable-dialog-form div.jtable-input-field-container:last-child {
+form.jtable-dialog-form table.jtable-input-field-container-grid tr.jtable-input-field-container-row:last-child td.jtable-input-field-container {
   border: none;
 }
 form.jtable-dialog-form div.jtable-input-label {

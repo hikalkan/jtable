@@ -225,7 +225,10 @@
 
             //Create add new record form
             var $addRecordForm = $('<form id="jtable-create-form" class="jtable-dialog-form jtable-create-form"></form>');
-
+			var ColumnCount=self.options.createFormColumns ? self.options.createFormColumns : 1;
+			var CurrentColumnCount=0;
+			var $CreateFormTable = $('<table class="jtable-input-field-container-grid"/>').appendTo($addRecordForm);
+			var $RowContainer = $('<tr class="jtable-input-field-container-row" />').appendTo($CreateFormTable);
             //Create input elements
             for (var i = 0; i < self._fieldList.length; i++) {
 
@@ -247,10 +250,16 @@
                     continue;
                 }
 
-                //Create a container div for this input field and add to form
-                var $fieldContainer = $('<div />')
+                //Create a container table cell for this input field and add to form
+                var $fieldContainer = $('<td />')
                     .addClass('jtable-input-field-container')
-                    .appendTo($addRecordForm);
+                    .appendTo($RowContainer);
+                
+                CurrentColumnCount++;
+				if(CurrentColumnCount==ColumnCount)	{
+						$RowContainer=$('<tr class="jtable-input-field-container-row" />').appendTo($CreateFormTable);
+						CurrentColumnCount=0;
+				}
 
                 //Create a label for input
                 $fieldContainer.append(self._createInputLabelForRecordField(fieldName));
